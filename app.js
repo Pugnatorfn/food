@@ -24,40 +24,42 @@ const expirationInput = document.getElementById('expiration');
 const addItemButton = document.getElementById('addItem');
 const itemList = document.getElementById('itemList');
 
-// Authentication
-auth.signInAnonymously().catch(error => {
-  console.error('Authentication error:', error);
-});
+  // Authentication
+  auth.signInAnonymously().then(() => {
+    // Authentication successful, now `auth` is defined in this scope
+    addItemButton.addEventListener('click', () => {
+      const item = itemInput.value;
+      const expiration = expirationInput.value;
 
-// Slide-in animation for new items
-function animateNewItem(itemElement) {
-  itemElement.style.animation = 'slideIn 0.5s ease';
-  itemElement.addEventListener('animationend', () => {
-    itemElement.style.animation = '';
+      if (item && expiration) {
+        const newItemRef = database.ref('items').push();
+        newItemRef.set({
+          item: item,
+          expiration: expiration,
+          timestamp: firebase.database.ServerValue.TIMESTAMP
+        });
+      }
+    });
+
+    // Display items from the database with animation
+    database.ref('items').orderByChild('timestamp').on('child_added', snapshot => {
+      const itemData = snapshot.val();
+      const itemListItem = document.createElement('li');
+      itemListItem.textContent = `${itemData.item} (Expires: ${itemData.expiration})`;
+      itemListItem.classList.add('animated-item');
+      itemList.appendChild(itemListItem);
+      animateNewItem(itemListItem);
+    });
+
+  }).catch(error => {
+    console.error('Authentication error:', error);
   });
-}
 
-// Add item to the database
-addItemButton.addEventListener('click', () => {
-  const item = itemInput.value;
-  const expiration = expirationInput.value;
-
-  if (item && expiration) {
-    const newItemRef = database.ref('items').push();
-    newItemRef.set({
-      item: item,
-      expiration: expiration,
-      timestamp: firebase.database.ServerValue.TIMESTAMP
+  // Slide-in animation for new items
+  function animateNewItem(itemElement) {
+    itemElement.style.animation = 'slideIn 0.5s ease';
+    itemElement.addEventListener('animationend', () => {
+      itemElement.style.animation = '';
     });
   }
-});
-
-// Display items from the database with animation
-database.ref('items').orderByChild('timestamp').on('child_added', snapshot => {
-  const itemData = snapshot.val();
-  const itemListItem = document.createElement('li');
-  itemListItem.textContent = `${itemData.item} (Expires: ${itemData.expiration})`;
-  itemListItem.classList.add('animated-item');
-  itemList.appendChild(itemListItem);
-  animateNewItem(itemListItem);
 });
