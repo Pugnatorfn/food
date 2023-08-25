@@ -1,8 +1,11 @@
-// Import Firebase modules based on environment
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-analytics.js";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Initialize Firebase
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAKP92lIAktLXHf5fayozHZQjJTOVYIFjw",
   authDomain: "food-b0df3.firebaseapp.com",
@@ -13,10 +16,9 @@ const firebaseConfig = {
   measurementId: "G-460S024LHB"
 };
 
-firebase.initializeApp(firebaseConfig);
-
-const database = firebase.database();
-const auth = firebase.auth();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 const itemInput = document.getElementById('item');
 const expirationInput = document.getElementById('expiration');
