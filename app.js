@@ -1,7 +1,6 @@
 // Import Firebase modules based on environment
-firebase = require('firebase/app');
-require('firebase/auth');
-require('firebase/database');
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-analytics.js";
 
 // Initialize Firebase
 const firebaseConfig = {
