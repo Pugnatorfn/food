@@ -61,5 +61,3 @@ const itemList = document.getElementById('itemList');
     itemElement.addEventListener('animationend', () => {
       itemElement.style.animation = '';
     });
-  }
-});
