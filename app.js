@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 
-// Initialize Firebase
+// Initialize firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAKP92lIAktLXHf5fayozHZQjJTOVYIFjw",
   authDomain: "food-b0df3.firebaseapp.com",
