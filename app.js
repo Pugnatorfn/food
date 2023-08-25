@@ -1,16 +1,7 @@
 // Import Firebase modules based on environment
-let firebase;
-if (typeof require === 'function') {
-  // CommonJS environment
-  firebase = require('firebase/app');
-  require('firebase/auth');
-  require('firebase/database');
-} else {
-  // ES6 module environment
-  import firebase from 'firebase/app';
-  import 'firebase/auth';
-  import 'firebase/database';
-}
+firebase = require('firebase/app');
+require('firebase/auth');
+require('firebase/database');
 
 // Initialize Firebase
 const firebaseConfig = {
