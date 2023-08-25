@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collaborative PWA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="app-header">
+      <h1 class="app-title">Collaborative PWA</h1>
+    </header>
+    <main class="app-main">
+      <div class="input-group">
+        <input type="text" id="item" placeholder="Item">
+        <input type="text" id="expiration" placeholder="Expiration Date">
+        <button id="addItem">Add</button>
+      </div>
+      <ul id="itemList"></ul>
+    </main>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
